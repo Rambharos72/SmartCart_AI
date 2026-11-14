@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f6f5f0" />
+    <meta name="description" content="Discover everyday finds, get budget-aware product suggestions, and manage demo orders with SmartCart." />
+    <title>SmartCart | Good finds, made simple</title>
+    <script>
+      window.smartCartBootError = "";
+      window.addEventListener("error", function (event) {
+        if (event.target && event.target.tagName === "SCRIPT") {
+          window.smartCartBootError = "Could not load " + event.target.src;
+        } else if (event.message) {
+          window.smartCartBootError = event.message;
+        }
+      }, true);
+    </script>
+    <link href="assets/vendor/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/vendor/bootstrap-icons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/style.css" />
+  </head>
+  <body>
+    <div id="root">
+      <main class="runtime-fallback">
+        <div class="runtime-fallback-card">
+          <span class="runtime-fallback-mark">S</span>
+          <p class="runtime-eyebrow">SMARTCART · LOCAL DEMO</p>
+          <h1>Starting your store…</h1>
+          <p>SmartCart is loading its storefront and local database connection.</p>
+        </div>
+      </main>
+    </div>
+    <script src="assets/vendor/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/jspdf.umd.min.js"></script>
+    <script src="assets/vendor/react.production.min.js"></script>
+    <script src="assets/vendor/react-dom.production.min.js"></script>
+    <script src="assets/app.compiled.js"></script>
+    <script>
+      window.setTimeout(function () {
+        var root = document.getElementById("root");
+        if (root && root.querySelector(".runtime-fallback")) {
+          var detail = window.smartCartBootError ? '<small class="runtime-boot-error">Startup detail: ' + window.smartCartBootError.replace(/[&<>"']/g, "") + '</small>' : '';
+          root.innerHTML = '<main class="runtime-fallback"><div class="runtime-fallback-card"><span class="runtime-fallback-mark">S</span><p class="runtime-eyebrow">SMARTCART · LOCAL DEMO</p><h1>The storefront could not start</h1><p>Refresh the page. If the issue continues, start SmartCart again with the project launcher so PHP can connect to the local SQLite database.</p>' + detail + '<a class="runtime-fallback-button" href="/api/index.php?action=session">Check local server</a><small>If this check shows JSON, PHP is running. If it does not, start the project with <b>Open_SmartCart_AI.bat</b>.</small></div></main>';
+        }
+      }, 7000);
+    </script>
+  </body>
+</html>
